@@ -1,0 +1,50 @@
+"""
+Helper script for extracting frames from the UCF-101 dataset
+"""
+
+import av
+import glob
+import os
+import time
+import tqdm
+import datetime
+import argparse
+from fastai2.vision.all import *
+
+
+def extract_frames(video_path, time_left):
+    frames = []
+    video = av.open(video_path)
+    for frame in video.decode(0):
+        yield frame.to_image()
+
+  
+        
+
+prev_time = time.time()
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--dataset_path", type=str, default="UCF-101", help="Path to UCF-101 dataset")
+    opt = parser.parse_args()
+    print(opt)
+
+    time_left = 0
+    video_paths = glob.glob(os.path.join(opt.dataset_path, "*", "*.avi"))
+    for i, video_path in enumerate(video_paths):
+        sequence_type, sequence_name = video_path.split(".avi")[0].split("/")[-2:]
+        sequence_path = os.path.join(f"{opt.dataset_path}-frames", sequence_type, sequence_name)
+
+        if os.path.exists(sequence_path):
+            continue
+
+        os.makedirs(sequence_path, exist_ok=True)
+
+        # Extract frames
+        for j, frame in enumerate(
+            tqdm.tqdm(
+                extract_frames(video_path, time_left),
+                desc=f"[{i}/{len(video_paths)}] {sequence_name} : ETA {time_left}",
+            )
+        ):
+            frame.save(os.path.join(sequence_path, f"{j}.jpg"))
+
