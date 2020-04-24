@@ -9,9 +9,13 @@ index = {"PATH": "00_core.ipynb",
          "ImageTupleBlock": "00_core.ipynb",
          "get_tuple_files": "00_core.ipynb",
          "grand_parent_label": "00_core.ipynb",
-         "get_block": "00_core.ipynb"}
+         "get_block": "00_core.ipynb",
+         "Encoder": "03_models.ipynb",
+         "SimpleModel": "03_models.ipynb",
+         "simple_splitter": "03_models.ipynb"}
 
-modules = ["core.py"]
+modules = ["core.py",
+           "models.py"]
 
 doc_url = "https://tcapelle.github.io/action_recognition/"
 
