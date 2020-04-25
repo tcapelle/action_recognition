@@ -12,7 +12,10 @@ index = {"PATH": "00_core.ipynb",
          "get_block": "00_core.ipynb",
          "Encoder": "03_models.ipynb",
          "SimpleModel": "03_models.ipynb",
-         "simple_splitter": "03_models.ipynb"}
+         "simple_splitter": "03_models.ipynb",
+         "LSTM": "03_models.ipynb",
+         "ConvLSTM": "03_models.ipynb",
+         "convlstm_splitter": "03_models.ipynb"}
 
 modules = ["core.py",
            "models.py"]
