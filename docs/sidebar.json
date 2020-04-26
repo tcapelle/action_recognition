@@ -1,10 +1,10 @@
 {
-  "Notebook": {
-    "Export to modules": "/export",
-    "Convert to html": "/export2html",
-    "Show doc": "/showdoc",
-    "Test functions": "/test",
-    "Core functions": "/core",
-    "Command line functions": "/cli"
+  "action_recognition": {
+    "Overview": "/",
+    "Importing sequences of Images": "/core",
+    "Utils": "/utils",
+    "Image sequence models": "/models",
+    "Baseline": "/train_baseline",
+    "ConvLSTM ": "/train_convlstm"
   }
 }

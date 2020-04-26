@@ -7,24 +7,24 @@ entries:
 - folders:
   - folderitems:
     - output: web,pdf
-      title: Export to modules
-      url: /export.html
+      title: Overview
+      url: /
     - output: web,pdf
-      title: Convert to html
-      url: /export2html.html
+      title: Importing sequences of Images
+      url: /core
     - output: web,pdf
-      title: Show doc
-      url: /showdoc.html
+      title: Utils
+      url: /utils
     - output: web,pdf
-      title: Test functions
-      url: /test.html
+      title: Image sequence models
+      url: /models
     - output: web,pdf
-      title: Core functions
-      url: /core.html
+      title: Baseline
+      url: /train_baseline
     - output: web,pdf
-      title: Command line functions
-      url: /cli.html
+      title: 'ConvLSTM '
+      url: /train_convlstm
     output: web
-    title: Notebook
+    title: action_recognition
   output: web
   title: Sidebar

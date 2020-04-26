@@ -49,10 +49,11 @@ def grand_parent_label(o, **kwargs):
 # Cell
 def get_block(image_size=64, seq_len=40):
     "A block for sequence of images from file path list"
+    item_tfms = [] if (image_size == None) else [Resize(image_size)]
     block = DataBlock(blocks    = (ImageTupleBlock, CategoryBlock),
                       get_items = partial(get_tuple_files, seq_len=seq_len),
                       get_y     = grand_parent_label,
-                      item_tfms = Resize(image_size),
+                      item_tfms = item_tfms,
                       splitter  = RandomSplitter(),
                       batch_tfms=[Normalize.from_stats(*imagenet_stats)])
     return block
