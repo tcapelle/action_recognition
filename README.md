@@ -25,3 +25,6 @@ $ pip install -e .
 This package also provides function to download nad process the video dataset into multiple frames, check [utils notebooks](nbs/01_utils.ipynb).
 
 I am actually at home doing everythin on a small laptop with a GTX 1050 mobile GPU, so I am very limited to do proper benchmark.
+
+## TODO
+- Want to try a pure `conv_lstm` based resnet, but pytorch don't have native layers (as Keras). Probably will try [this implementation](https://github.com/ndrplz/ConvLSTM_pytorch)
