@@ -19,7 +19,9 @@ $ pip install -e .
 
 ## Results
 
-- [train baseline](nbs/04_train_baseline.ipynb): Implements a Basic Resnet 34 encoder coupled with a simple attention layer over the frames.
-- [train convlstm](nbs/04_train_convlstm.ipynb): resnet34 encoder + LSTM layer over image features.
+- [train baseline](nbs/04_train_baseline.ipynb): Implements a Basic Resnet 34 encoder coupled with a simple attention layer over the frames. (91.7% accuracy)
+- [train convlstm](nbs/04_train_convlstm.ipynb): resnet34 encoder + LSTM layer over image features. (94.8% accuracy)
 
-This package also provides function to download nad process the video dataset into multiple frames, check [utils notebooks](nbs/01_utils.ipynb)
+This package also provides function to download nad process the video dataset into multiple frames, check [utils notebooks](nbs/01_utils.ipynb).
+
+I am actually at home doing everythin on a small laptop with a GTX 1050 mobile GPU, so I am very limited to do proper benchmark.
