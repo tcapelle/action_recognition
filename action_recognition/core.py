@@ -131,7 +131,7 @@ def get_action_dataloaders(files, bs=8, image_size=64, seq_len=20, val_idxs=None
     itfm = ImageTupleTfm(random_sample=random_sample, seq_len=seq_len)
     ds = Datasets(files, tfms=[[itfm], [parent_label, Categorize]], splits=splits)
     dls = ds.dataloaders(bs=bs, after_item=[Resize(image_size), ToTensor],
-                          after_batch=[IntToFloatTensor, Normalize.from_stats(*imagenet_stats)])
+                         after_batch=[IntToFloatTensor, Normalize.from_stats(*imagenet_stats)], drop_last=True)
     return dls
 
 # Cell
