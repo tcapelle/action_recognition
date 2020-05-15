@@ -62,8 +62,8 @@ class LSTM(Module):
         self.h = None
 
     def forward(self, x):
-        if (self.h is not None) and (x.shape[0] != self.h[0].shape[1]):
-                self.h = self.h[0][:,0:x.shape[0],:], self.h[0][:,0:x.shape[0],:]
+        if (self.h is not None) and (x.shape[0] != self.h[0].shape[1]): #dealing with last batch on valid
+                self.h = None
         raw, h = self.lstm(x, self.h)
         out = self.drop(raw)
         self.h = [h_.detach() for h_ in h]
