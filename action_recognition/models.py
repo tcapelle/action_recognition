@@ -63,7 +63,8 @@ class LSTM(Module):
 
     def forward(self, x):
         if (self.h is not None) and (x.shape[0] != self.h[0].shape[1]): #dealing with last batch on valid
-                self.h = None
+#             self.h = [h_[:, :x.shape[0], :] for h_ in self.h]
+            self.h = None
         raw, h = self.lstm(x, self.h)
         out = self.drop(raw)
         self.h = [h_.detach() for h_ in h]
@@ -77,12 +78,12 @@ class ConvLSTM(Module):
         nf = num_features_model(nn.Sequential(*model.body.children())) * 2
         self.encoder = model
         self.lstm = LSTM(nf, hidden_dim, lstm_layers, bidirectional)
-        self.head = nn.Sequential(
-            LinBnDrop(2 * hidden_dim if bidirectional else hidden_dim, hidden_dim, p=0.2, act=nn.ReLU()),
-            nn.Linear(hidden_dim, num_classes),
-        )
         self.attention = attention
         self.attention_layer = nn.Linear(2 * hidden_dim if bidirectional else hidden_dim, 1)
+        self.head = nn.Sequential(
+            LinBnDrop( (lstm_layers if not attention else 1)*(2 * hidden_dim if bidirectional else hidden_dim), hidden_dim, p=0.2, act=nn.ReLU()),
+            nn.Linear(hidden_dim, num_classes),
+        )
         self.debug = debug
 
     def forward(self, x):
@@ -99,8 +100,11 @@ class ConvLSTM(Module):
         if self.attention:
             attention_w = F.softmax(self.attention_layer(x).squeeze(-1), dim=-1)
             out = torch.sum(attention_w.unsqueeze(-1) * x, dim=1)
+            if self.debug: print(f' after attention: {out.shape}')
         else:
-            out = h
+            if self.debug: print(f' hidden state: {h[0].shape}')
+            out = h[0].permute(1,0,2).flatten(1)
+            if self.debug: print(f' hidden state flat: {out.shape}')
         return self.head(out)
 
     def reset(self): self.lstm.reset()
