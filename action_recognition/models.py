@@ -67,7 +67,7 @@ class LSTM(Module):
         raw, h = self.lstm(x, self.h)
         out = self.drop(raw)
         self.h = [h_.detach() for h_ in h]
-        return out
+        return out, h
 
 # Cell
 class ConvLSTM(Module):
@@ -94,14 +94,14 @@ class ConvLSTM(Module):
         if self.debug:  print(f' after encode:   {x.shape}')
         x = x.view(batch_size, seq_length, -1)
         if self.debug:  print(f' before lstm:   {x.shape}')
-        x = self.lstm(x)
+        x, h = self.lstm(x)
         if self.debug:  print(f' after lstm:   {x.shape}')
         if self.attention:
             attention_w = F.softmax(self.attention_layer(x).squeeze(-1), dim=-1)
-            x = torch.sum(attention_w.unsqueeze(-1) * x, dim=1)
+            out = torch.sum(attention_w.unsqueeze(-1) * x, dim=1)
         else:
-            x = x[:, -1]
-        return self.head(x)
+            out = h
+        return self.head(out)
 
     def reset(self): self.lstm.reset()
 
