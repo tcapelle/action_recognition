@@ -125,13 +125,13 @@ def get_split_idxs(split_file=SPLIT_PATH/'testlist01.txt', image_path=IMAGE_PATH
     return [i for i,x in enumerate(files) if x in split_list]
 
 # Cell
-def get_action_dataloaders(files, bs=8, image_size=64, seq_len=20, val_idxs=None, random_sample=False):
+def get_action_dataloaders(files, bs=8, image_size=64, seq_len=20, val_idxs=None, random_sample=False, **kwargs):
     "Create a dataloader with `val_idxs` splits"
     splits = RandomSplitter()(files) if val_idxs is None else IndexSplitter(val_idxs)(files)
     itfm = ImageTupleTfm(random_sample=random_sample, seq_len=seq_len)
     ds = Datasets(files, tfms=[[itfm], [parent_label, Categorize]], splits=splits)
     dls = ds.dataloaders(bs=bs, after_item=[Resize(image_size), ToTensor],
-                         after_batch=[IntToFloatTensor, Normalize.from_stats(*imagenet_stats)], drop_last=True)
+                         after_batch=[IntToFloatTensor, Normalize.from_stats(*imagenet_stats)], drop_last=True, **kwargs)
     return dls
 
 # Cell
