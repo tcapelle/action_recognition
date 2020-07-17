@@ -5,6 +5,7 @@
     "Utils": "/utils",
     "Image sequence models": "/models",
     "Baseline": "/train_baseline",
-    "ConvLSTM ": "/train_convlstm"
+    "ConvLSTM ": "/train_convlstm",
+    "Transformer ": "/train_transformer"
   }
 }

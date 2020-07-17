@@ -69,6 +69,7 @@ description: "Implementation of various architectures to solve the UCF 101 actio
 <h2 id="Results">Results<a class="anchor-link" href="#Results"> </a></h2><ul>
 <li><a href="nbs/04_train_baseline.ipynb">train baseline</a>: Implements a Basic Resnet 34 encoder coupled with a simple attention layer over the frames. (91.7% accuracy)</li>
 <li><a href="nbs/04_train_convlstm.ipynb">train convlstm</a>: resnet34 encoder + LSTM layer over image features. (94.8% accuracy)</li>
+<li><a href="nbs/05_train_transformer.ipynb">train_transformer</a>: Added a Transformer based model, inspired from DETR. This is in early stages, only supporting batch size equal to 1.</li>
 </ul>
 
 </div>
@@ -77,7 +78,8 @@ description: "Implementation of various architectures to solve the UCF 101 actio
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This package also provides function to download nad process the video dataset into multiple frames, check <a href="nbs/01_utils.ipynb">utils notebooks</a>.</p>
-<p>I am actually at home doing everythin on a small laptop with a GTX 1050 mobile GPU, so I am very limited to do proper benchmark.</p>
+<p><del>I am actually at home doing everythin on a small laptop with a GTX 1050 mobile GPU, so I am very limited to do proper benchmark.</del>
+Actually I have acces to compute, so I re run the notebooks.</p>
 
 </div>
 </div>
@@ -85,7 +87,8 @@ description: "Implementation of various architectures to solve the UCF 101 actio
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="TODO">TODO<a class="anchor-link" href="#TODO"> </a></h2><ul>
-<li>Want to try a pure <code>conv_lstm</code> based resnet, but pytorch don't have native layers (as Keras). Probably will try <a href="https://github.com/ndrplz/ConvLSTM_pytorch">this implementation</a></li>
+<li>Want to try a pure <code>conv_lstm</code> based resnet, but pytorch don't have native layers (as Keras). Probably will try <a href="https://github.com/ndrplz/ConvLSTM_pytorch">this implementation</a>. You can actually check my implementation of a ConvGRU model for movement <a href="https://github.com/tcapelle/moving_mnist">here</a>.</li>
+<li>DETR model supporting batch size.</li>
 </ul>
 
 </div>

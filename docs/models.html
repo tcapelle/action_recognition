@@ -41,6 +41,40 @@ description: "Models to predict the action class from a sequence of frames"
 </div>
     {% endraw %}
 
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">set_device</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">get_device_name</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;GeForce RTX 2070 SUPER&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="A-resnet-based-Encoder">A resnet based Encoder<a class="anchor-link" href="#A-resnet-based-Encoder"> </a></h2><blockquote><p>Extracting features of images to latent variable space</p>
@@ -487,7 +521,8 @@ description: "Models to predict the action class from a sequence of frames"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lstm</span><span class="p">(</span><span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">out</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">lstm</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">h</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 
     </div>
@@ -502,7 +537,7 @@ description: "Models to predict the action class from a sequence of frames"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>torch.Size([10, 512])</pre>
+<pre>(torch.Size([32, 10, 512]), torch.Size([1, 32, 512]), torch.Size([1, 32, 512]))</pre>
 </div>
 
 </div>
@@ -513,6 +548,13 @@ description: "Models to predict the action class from a sequence of frames"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It can deal with different batch sizes now:</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -520,7 +562,8 @@ description: "Models to predict the action class from a sequence of frames"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lstm</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">lstm</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">out</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">lstm</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">512</span><span class="p">))</span>
+<span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">h</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 
     </div>
@@ -535,7 +578,7 @@ description: "Models to predict the action class from a sequence of frames"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(torch.Size([1, 32, 512]), torch.Size([1, 32, 512]))</pre>
+<pre>(torch.Size([16, 10, 512]), torch.Size([1, 16, 512]), torch.Size([1, 16, 512]))</pre>
 </div>
 
 </div>
@@ -564,7 +607,7 @@ description: "Models to predict the action class from a sequence of frames"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ConvLSTM" class="doc_header"><code>class</code> <code>ConvLSTM</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L71" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ConvLSTM</code>(<strong><code>arch</code></strong>=<em><code>'resnet34'</code></em>, <strong><code>weights_file</code></strong>=<em><code>None</code></em>, <strong><code>num_classes</code></strong>=<em><code>30</code></em>, <strong><code>lstm_layers</code></strong>=<em><code>1</code></em>, <strong><code>hidden_dim</code></strong>=<em><code>1024</code></em>, <strong><code>bidirectional</code></strong>=<em><code>True</code></em>, <strong><code>attention</code></strong>=<em><code>True</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
+<h2 id="ConvLSTM" class="doc_header"><code>class</code> <code>ConvLSTM</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L74" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ConvLSTM</code>(<strong><code>arch</code></strong>=<em><code>'resnet34'</code></em>, <strong><code>weights_file</code></strong>=<em><code>None</code></em>, <strong><code>num_classes</code></strong>=<em><code>30</code></em>, <strong><code>lstm_layers</code></strong>=<em><code>1</code></em>, <strong><code>hidden_dim</code></strong>=<em><code>1024</code></em>, <strong><code>bidirectional</code></strong>=<em><code>True</code></em>, <strong><code>attention</code></strong>=<em><code>True</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
 </blockquote>
 <p>Same as <code>nn.Module</code>, but no need for subclasses to call <code>super().__init__</code></p>
 
@@ -596,7 +639,7 @@ description: "Models to predict the action class from a sequence of frames"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="convlstm_splitter" class="doc_header"><code>convlstm_splitter</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L107" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>convlstm_splitter</code>(<strong><code>model</code></strong>)</p>
+<h4 id="convlstm_splitter" class="doc_header"><code>convlstm_splitter</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L113" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>convlstm_splitter</code>(<strong><code>model</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -617,7 +660,7 @@ description: "Models to predict the action class from a sequence of frames"
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#bs, seq_len, ch, w, h</span>
-<span class="n">inp</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="n">inp</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
 </pre></div>
 
     </div>
@@ -634,24 +677,8 @@ description: "Models to predict the action class from a sequence of frames"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clstm</span> <span class="o">=</span> <span class="n">ConvLSTM</span><span class="p">(</span><span class="n">bidirectional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_eq</span><span class="p">(</span><span class="n">clstm</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clstm</span> <span class="o">=</span> <span class="n">ConvLSTM</span><span class="p">(</span><span class="n">attention</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bidirectional</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lstm_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_eq</span><span class="p">(</span><span class="n">clstm</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -664,10 +691,276 @@ description: "Models to predict the action class from a sequence of frames"
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre> after stack:   torch.Size([64, 10, 3, 64, 64])
- after encode:   torch.Size([640, 1024])
- before lstm:   torch.Size([64, 10, 1024])
- after lstm:   torch.Size([64, 10, 1024])
+<pre> after stack:   torch.Size([32, 10, 3, 64, 64])
+ after encode:   torch.Size([320, 1024])
+ before lstm:   torch.Size([32, 10, 1024])
+ after lstm:   torch.Size([32, 10, 1024])
+ hidden state: torch.Size([2, 32, 1024])
+ hidden state flat: torch.Size([32, 2048])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clstm</span> <span class="o">=</span> <span class="n">ConvLSTM</span><span class="p">(</span><span class="n">lstm_layers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_eq</span><span class="p">(</span><span class="n">clstm</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre> after stack:   torch.Size([32, 10, 3, 64, 64])
+ after encode:   torch.Size([320, 1024])
+ before lstm:   torch.Size([32, 10, 1024])
+ after lstm:   torch.Size([32, 10, 2048])
+ after attention: torch.Size([32, 2048])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clstm</span> <span class="o">=</span> <span class="n">ConvLSTM</span><span class="p">(</span><span class="n">lstm_layers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_eq</span><span class="p">(</span><span class="n">clstm</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre> after stack:   torch.Size([32, 10, 3, 64, 64])
+ after encode:   torch.Size([320, 1024])
+ before lstm:   torch.Size([32, 10, 1024])
+ after lstm:   torch.Size([32, 10, 2048])
+ after attention: torch.Size([32, 2048])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Transformer-model">Transformer model<a class="anchor-link" href="#Transformer-model"> </a></h2><blockquote><p>inspired from DETR :<a href="https://colab.research.google.com/github/facebookresearch/detr/blob/colab/notebooks/detr_demo.ipynb#scrollTo=h91rsIPl7tVl">https://colab.research.google.com/github/facebookresearch/detr/blob/colab/notebooks/detr_demo.ipynb#scrollTo=h91rsIPl7tVl</a></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="DETR" class="doc_header"><code>class</code> <code>DETR</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L117" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DETR</code>(<strong><code>arch</code></strong>=<em><code>'resnet34'</code></em>, <strong><code>n_in</code></strong>=<em><code>3</code></em>, <strong><code>n_classes</code></strong>=<em><code>30</code></em>, <strong><code>hidden_dim</code></strong>=<em><code>256</code></em>, <strong><code>nheads</code></strong>=<em><code>4</code></em>, <strong><code>num_encoder_layers</code></strong>=<em><code>4</code></em>, <strong><code>num_decoder_layers</code></strong>=<em><code>4</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
+</blockquote>
+<p>Same as <code>nn.Module</code>, but no need for subclasses to call <code>super().__init__</code></p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="detr_split" class="doc_header"><code>detr_split</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L183" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>detr_split</code>(<strong><code>m</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detr</span> <span class="o">=</span> <span class="n">DETR</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detr_split</span><span class="p">(</span><span class="n">detr</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detr</span><span class="p">([</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre> after stack:   torch.Size([1, 10, 3, 64, 64])
+backbone: torch.Size([10, 512, 2, 2])
+h: torch.Size([10, 256, 2, 2])
+h: torch.Size([1, 10, 256, 2, 2])
+T,H,W: 10, 2, 2
+pos: torch.Size([40, 1, 256])
+tf_input: torch.Size([40, 1, 256])
+tf_out: torch.Size([1, 1, 256])
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>torch.Size([1, 30])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">###### hide</span>
+<span class="kn">from</span> <span class="nn">nbdev.export</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">notebook2script</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Converted 00_core.ipynb.
+Converted 01_utils.ipynb.
+Converted 03_models.ipynb.
+Converted 04_train_baseline.ipynb.
+Converted 04_train_convlstm.ipynb.
+Converted 05_train_transformer.ipynb.
+Converted index.ipynb.
 </pre>
 </div>
 </div>
