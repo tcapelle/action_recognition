@@ -115,7 +115,7 @@ def convlstm_splitter(model):
 
 # Cell
 class DETR(Module):
-    def __init__(self,  arch=resnet34, n_in=3, n_classes=30, hidden_dim=256, nheads=4, num_encoder_layers=4,
+    def __init__(self,  arch=resnet34, n_in=3, n=400, n_classes=30, hidden_dim=256, nheads=4, num_encoder_layers=4,
                  num_decoder_layers=4, debug=False):
         self.debug = debug
 
@@ -134,13 +134,13 @@ class DETR(Module):
 
         # spatial positional encodings
         # note that in baseline DETR we use sine positional encodings
-#         self.pos = nn.Parameter(torch.rand(n, hidden_dim))
-        self.row_embed = nn.Parameter(torch.rand(50, hidden_dim // 4))
-        self.col_embed = nn.Parameter(torch.rand(50, hidden_dim // 4))
-        self.time_embed =nn.Parameter(torch.rand(50, hidden_dim // 2))
+        self.pos = nn.Parameter(torch.rand(n, hidden_dim))
+#         self.row_embed = nn.Parameter(torch.rand(50, hidden_dim // 4))
+#         self.col_embed = nn.Parameter(torch.rand(50, hidden_dim // 4))
+#         self.time_embed =nn.Parameter(torch.rand(50, hidden_dim // 2))
 
         #head
-        self.lin = nn.Linear(hidden_dim,n_classes)  #hardcodeed
+        self.lin = nn.Linear(hidden_dim, n_classes)
 
     def forward(self, x):
         x = torch.stack(x, dim=1)
@@ -162,16 +162,16 @@ class DETR(Module):
         T = h.shape[1]
         if self.debug: print(f'T,H,W: {T}, {H}, {W}')
 
-        pos = torch.cat([
-            self.time_embed[:T].view(T,1,1,-1).repeat(1, H, W, 1),
-            self.col_embed[:W].view(1,1,W,-1).repeat(T, H, 1, 1),
-            self.row_embed[:H].view(1,H,1,-1).repeat(T, 1, W, 1),
-        ], dim=-1).flatten(0, 2).unsqueeze(1)
-#         pos = self.pos.unsqueeze(1)
+#         pos = torch.cat([
+#             self.time_embed[:T].view(T,1,1,-1).repeat(1, H, W, 1),
+#             self.col_embed[:W].view(1,1,W,-1).repeat(T, H, 1, 1),
+#             self.row_embed[:H].view(1,H,1,-1).repeat(T, 1, W, 1),
+#         ], dim=-1).flatten(0, 2).unsqueeze(1)
+        pos = self.pos[0:T*W*H].unsqueeze(1)
         if self.debug: print(f'pos: {pos.shape}')
 
         # propagate through the transformer
-        tf_input = pos + 0.5 * h.permute(0,2,1,3,4).flatten(2).permute(2,0,1)
+        tf_input = pos + 0.1 * h.permute(0,2,1,3,4).flatten(2).permute(2,0,1)
         if self.debug: print(f'tf_input: {tf_input.shape}')
         h = self.transformer(tf_input,
                              self.query_pos.unsqueeze(1))
@@ -180,6 +180,9 @@ class DETR(Module):
 
 
 # Cell
+# def detr_split(m):
+#     return [params(m.backbone),
+#             params(m.conv)+params(m.transformer)+[m.query_pos]+[m.col_embed]+[m.row_embed]+[m.time_embed]+params(m.lin)]
 def detr_split(m):
     return [params(m.backbone),
-            params(m.conv)+params(m.transformer)+[m.query_pos]+[m.col_embed]+[m.row_embed]+[m.time_embed]+params(m.lin)]
+            params(m.conv)+params(m.transformer)+[m.query_pos]+[m.pos]+params(m.lin)]
