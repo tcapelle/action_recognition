@@ -27,7 +27,8 @@ index = {"PATH": "00_core.ipynb",
          "ConvLSTM": "03_models.ipynb",
          "convlstm_splitter": "03_models.ipynb",
          "DETR": "03_models.ipynb",
-         "detr_split": "03_models.ipynb"}
+         "detr_split": "03_models.ipynb",
+         "TransformerModel": "03_models.ipynb"}
 
 modules = ["core.py",
            "models.py"]
