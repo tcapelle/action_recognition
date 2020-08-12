@@ -25,6 +25,9 @@ entries:
       title: 'ConvLSTM '
       url: /train_convlstm
     - output: web,pdf
+      title: ConvLSTM on split0
+      url: /train_convlstm_split0
+    - output: web,pdf
       title: 'Transformer '
       url: /train_transformer
     output: web

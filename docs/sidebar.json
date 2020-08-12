@@ -6,6 +6,7 @@
     "Image sequence models": "/models",
     "Baseline": "/train_baseline",
     "ConvLSTM ": "/train_convlstm",
+    "ConvLSTM on split0": "/train_convlstm_split0",
     "Transformer ": "/train_transformer"
   }
 }
