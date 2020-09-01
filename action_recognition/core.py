@@ -5,7 +5,7 @@ __all__ = ['PATH', 'IMAGE_PATH', 'SPLIT_PATH', 'get_sequence_paths', 'ImageTuple
            'get_split_idxs', 'get_action_dataloaders', 'grand_parent_label', 'get_block']
 
 # Cell
-from fastai2.vision.all import *
+from fastai.vision.all import *
 
 # Cell
 PATH = Path.cwd().parent/'data'
@@ -23,7 +23,7 @@ def get_sequence_paths(path):
     return sequence_paths
 
 # Cell
-class ImageTuple(Tuple):
+class ImageTuple(fastuple):
     "An Image tuple class of arbitrary lenght"
     @classmethod
     def create(cls, fns):
@@ -82,7 +82,7 @@ class ActionDataset():
         return len(self.sequence_paths)
 
 # Cell
-class TupleImage(Tuple):
+class TupleImage(fastuple):
     "A tuple of PILImages"
     def show(self, ctx=None, **kwargs):
         n = len(self)

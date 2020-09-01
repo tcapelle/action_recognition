@@ -11,25 +11,25 @@ entries:
       url: /
     - output: web,pdf
       title: Importing sequences of Images
-      url: /core
+      url: core.html
     - output: web,pdf
       title: Utils
-      url: /utils
+      url: utils.html
     - output: web,pdf
       title: Image sequence models
-      url: /models
+      url: models.html
     - output: web,pdf
       title: Baseline
-      url: /train_baseline
+      url: train_baseline.html
     - output: web,pdf
       title: 'ConvLSTM '
-      url: /train_convlstm
+      url: train_convlstm.html
     - output: web,pdf
       title: ConvLSTM on split0
-      url: /train_convlstm_split0
+      url: train_convlstm_split0.html
     - output: web,pdf
       title: 'Transformer '
-      url: /train_transformer
+      url: train_transformer.html
     output: web
     title: action_recognition
   output: web

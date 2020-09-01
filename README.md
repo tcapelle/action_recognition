@@ -2,13 +2,13 @@
 > Implementation of various architectures to solve the UCF 101 actions dataset
 
 
-This repo implementation is using `fastai2` library. It is based on the implementations found on [Action Recognition](https://github.com/eriklindernoren/Action-Recognition).
+This repo implementation is using `fastai` library (version 2). It is based on the implementations found on [Action Recognition](https://github.com/eriklindernoren/Action-Recognition).
 
 ## Install
 
-First install `fastai2`:
+First install `fastai`: (version 2, it has been released)
 ```bash
-$ pip install fastcore fastai2
+$ pip install fastcore fastai
 ```
 
 then clone the repo, and inside the repo's folder do:

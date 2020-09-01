@@ -4,7 +4,7 @@ __all__ = ['Encoder', 'SimpleModel', 'simple_splitter', 'LSTM', 'ConvLSTM', 'con
            'TransformerModel']
 
 # Cell
-from fastai2.vision.all import *
+from fastai.vision.all import *
 
 # Cell
 @delegates(create_cnn_model)

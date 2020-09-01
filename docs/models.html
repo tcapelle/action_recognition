@@ -2,11 +2,13 @@
 
 title: Image sequence models
 
+
 keywords: fastai
 sidebar: home_sidebar
 
 summary: "Models to predict the action class from a sequence of frames"
 description: "Models to predict the action class from a sequence of frames"
+nb_path: "nbs/03_models.ipynb"
 ---
 <!--
 
@@ -29,7 +31,7 @@ description: "Models to predict the action class from a sequence of frames"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We will built a bunch of models to read the <a href="/action_recognition/core#ImageTuple"><code>ImageTuple</code></a> and output the corresponding <code>Category</code>.</p>
+<p>We will built a bunch of models to read the <a href="/action_recognition/core.html#ImageTuple"><code>ImageTuple</code></a> and output the corresponding <code>Category</code>.</p>
 
 </div>
 </div>
@@ -135,7 +137,7 @@ description: "Models to predict the action class from a sequence of frames"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Encoder" class="doc_header"><code>class</code> <code>Encoder</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L11" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Encoder</code>(<strong><code>arch</code></strong>=<em><code>'resnet34'</code></em>, <strong><code>n_in</code></strong>=<em><code>3</code></em>, <strong><code>weights_file</code></strong>=<em><code>None</code></em>, <strong><code>head</code></strong>=<em><code>True</code></em>, <strong><code>cut</code></strong>=<em><code>None</code></em>, <strong><code>pretrained</code></strong>=<em><code>True</code></em>, <strong><code>init</code></strong>=<em><code>'kaiming_normal_'</code></em>, <strong><code>custom_head</code></strong>=<em><code>None</code></em>, <strong><code>concat_pool</code></strong>=<em><code>True</code></em>, <strong><code>lin_ftrs</code></strong>=<em><code>None</code></em>, <strong><code>ps</code></strong>=<em><code>0.5</code></em>, <strong><code>bn_final</code></strong>=<em><code>False</code></em>, <strong><code>lin_first</code></strong>=<em><code>False</code></em>, <strong><code>y_range</code></strong>=<em><code>None</code></em>) :: <code>Module</code></p>
+<h2 id="Encoder" class="doc_header"><code>class</code> <code>Encoder</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L11" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Encoder</code>(<strong><code>arch</code></strong>=<em><code>resnet34</code></em>, <strong><code>n_in</code></strong>=<em><code>3</code></em>, <strong><code>weights_file</code></strong>=<em><code>None</code></em>, <strong><code>head</code></strong>=<em><code>True</code></em>, <strong><code>cut</code></strong>=<em><code>None</code></em>, <strong><code>pretrained</code></strong>=<em><code>True</code></em>, <strong><code>init</code></strong>=<em><code>kaiming_normal_</code></em>, <strong><code>custom_head</code></strong>=<em><code>None</code></em>, <strong><code>concat_pool</code></strong>=<em><code>True</code></em>, <strong><code>lin_ftrs</code></strong>=<em><code>None</code></em>, <strong><code>ps</code></strong>=<em><code>0.5</code></em>, <strong><code>bn_final</code></strong>=<em><code>False</code></em>, <strong><code>lin_first</code></strong>=<em><code>False</code></em>, <strong><code>y_range</code></strong>=<em><code>None</code></em>) :: <code>Module</code></p>
 </blockquote>
 <p>Same as <code>nn.Module</code>, but no need for subclasses to call <code>super().__init__</code></p>
 
@@ -304,7 +306,7 @@ description: "Models to predict the action class from a sequence of frames"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="SimpleModel" class="doc_header"><code>class</code> <code>SimpleModel</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L24" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>SimpleModel</code>(<strong><code>arch</code></strong>=<em><code>'resnet34'</code></em>, <strong><code>weights_file</code></strong>=<em><code>None</code></em>, <strong><code>num_classes</code></strong>=<em><code>30</code></em>, <strong><code>seq_len</code></strong>=<em><code>40</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
+<h2 id="SimpleModel" class="doc_header"><code>class</code> <code>SimpleModel</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L24" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>SimpleModel</code>(<strong><code>arch</code></strong>=<em><code>resnet34</code></em>, <strong><code>weights_file</code></strong>=<em><code>None</code></em>, <strong><code>num_classes</code></strong>=<em><code>30</code></em>, <strong><code>seq_len</code></strong>=<em><code>40</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
 </blockquote>
 <p>A simple CNN model</p>
 
@@ -370,8 +372,7 @@ description: "Models to predict the action class from a sequence of frames"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#bs, seq_len, ch, w, h</span>
-<span class="n">inp</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">inp</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
 </pre></div>
 
     </div>
@@ -496,8 +497,7 @@ description: "Models to predict the action class from a sequence of frames"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># bs, input_dim, hidden_dim</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span>  <span class="mi">512</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span>  <span class="mi">512</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -660,7 +660,7 @@ description: "Models to predict the action class from a sequence of frames"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ConvLSTM" class="doc_header"><code>class</code> <code>ConvLSTM</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L75" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ConvLSTM</code>(<strong><code>arch</code></strong>=<em><code>'resnet34'</code></em>, <strong><code>weights_file</code></strong>=<em><code>None</code></em>, <strong><code>num_classes</code></strong>=<em><code>30</code></em>, <strong><code>lstm_layers</code></strong>=<em><code>1</code></em>, <strong><code>hidden_dim</code></strong>=<em><code>1024</code></em>, <strong><code>bidirectional</code></strong>=<em><code>True</code></em>, <strong><code>attention</code></strong>=<em><code>True</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
+<h2 id="ConvLSTM" class="doc_header"><code>class</code> <code>ConvLSTM</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L75" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ConvLSTM</code>(<strong><code>arch</code></strong>=<em><code>resnet34</code></em>, <strong><code>weights_file</code></strong>=<em><code>None</code></em>, <strong><code>num_classes</code></strong>=<em><code>30</code></em>, <strong><code>lstm_layers</code></strong>=<em><code>1</code></em>, <strong><code>hidden_dim</code></strong>=<em><code>1024</code></em>, <strong><code>bidirectional</code></strong>=<em><code>True</code></em>, <strong><code>attention</code></strong>=<em><code>True</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
 </blockquote>
 <p>Same as <code>nn.Module</code>, but no need for subclasses to call <code>super().__init__</code></p>
 
@@ -712,8 +712,7 @@ description: "Models to predict the action class from a sequence of frames"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#bs, seq_len, ch, w, h</span>
-<span class="n">inp</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">inp</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
 </pre></div>
 
     </div>
@@ -911,7 +910,7 @@ description: "Models to predict the action class from a sequence of frames"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DETR" class="doc_header"><code>class</code> <code>DETR</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L120" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DETR</code>(<strong><code>arch</code></strong>=<em><code>'resnet34'</code></em>, <strong><code>n_in</code></strong>=<em><code>3</code></em>, <strong><code>n</code></strong>=<em><code>400</code></em>, <strong><code>n_classes</code></strong>=<em><code>30</code></em>, <strong><code>hidden_dim</code></strong>=<em><code>256</code></em>, <strong><code>nheads</code></strong>=<em><code>4</code></em>, <strong><code>num_encoder_layers</code></strong>=<em><code>4</code></em>, <strong><code>num_decoder_layers</code></strong>=<em><code>4</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
+<h2 id="DETR" class="doc_header"><code>class</code> <code>DETR</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L120" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DETR</code>(<strong><code>arch</code></strong>=<em><code>resnet34</code></em>, <strong><code>n_in</code></strong>=<em><code>3</code></em>, <strong><code>n</code></strong>=<em><code>400</code></em>, <strong><code>n_classes</code></strong>=<em><code>30</code></em>, <strong><code>hidden_dim</code></strong>=<em><code>256</code></em>, <strong><code>nheads</code></strong>=<em><code>4</code></em>, <strong><code>num_encoder_layers</code></strong>=<em><code>4</code></em>, <strong><code>num_decoder_layers</code></strong>=<em><code>4</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
 </blockquote>
 <p>Same as <code>nn.Module</code>, but no need for subclasses to call <code>super().__init__</code></p>
 
@@ -1119,7 +1118,7 @@ tf_out: torch.Size([1, 1, 256])
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="TransformerModel" class="doc_header"><code>class</code> <code>TransformerModel</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L193" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TransformerModel</code>(<strong><code>arch</code></strong>=<em><code>'resnet34'</code></em>, <strong><code>n_in</code></strong>=<em><code>3</code></em>, <strong><code>n</code></strong>=<em><code>400</code></em>, <strong><code>n_classes</code></strong>=<em><code>30</code></em>, <strong><code>hidden_dim</code></strong>=<em><code>256</code></em>, <strong><code>nheads</code></strong>=<em><code>4</code></em>, <strong><code>num_encoder_layers</code></strong>=<em><code>4</code></em>, <strong><code>num_decoder_layers</code></strong>=<em><code>4</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
+<h2 id="TransformerModel" class="doc_header"><code>class</code> <code>TransformerModel</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L193" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TransformerModel</code>(<strong><code>arch</code></strong>=<em><code>resnet34</code></em>, <strong><code>n_in</code></strong>=<em><code>3</code></em>, <strong><code>n</code></strong>=<em><code>400</code></em>, <strong><code>n_classes</code></strong>=<em><code>30</code></em>, <strong><code>hidden_dim</code></strong>=<em><code>256</code></em>, <strong><code>nheads</code></strong>=<em><code>4</code></em>, <strong><code>num_encoder_layers</code></strong>=<em><code>4</code></em>, <strong><code>num_decoder_layers</code></strong>=<em><code>4</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
 </blockquote>
 <p>Same as <code>nn.Module</code>, but no need for subclasses to call <code>super().__init__</code></p>
 
@@ -1204,8 +1203,7 @@ tf_out: torch.Size([40, 1, 256])
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">###### hide</span>
-<span class="kn">from</span> <span class="nn">nbdev.export</span> <span class="kn">import</span> <span class="o">*</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nbdev.export</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">notebook2script</span><span class="p">()</span>
 </pre></div>
 
@@ -1224,6 +1222,7 @@ Converted 01_utils.ipynb.
 Converted 03_models.ipynb.
 Converted 04_train_baseline.ipynb.
 Converted 04_train_convlstm.ipynb.
+Converted 04_train_convlstm_split0.ipynb.
 Converted 05_train_transformer.ipynb.
 Converted index.ipynb.
 </pre>

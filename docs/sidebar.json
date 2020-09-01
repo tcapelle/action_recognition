@@ -1,12 +1,12 @@
 {
   "action_recognition": {
     "Overview": "/",
-    "Importing sequences of Images": "/core",
-    "Utils": "/utils",
-    "Image sequence models": "/models",
-    "Baseline": "/train_baseline",
-    "ConvLSTM ": "/train_convlstm",
-    "ConvLSTM on split0": "/train_convlstm_split0",
-    "Transformer ": "/train_transformer"
+    "Importing sequences of Images": "core.html",
+    "Utils": "utils.html",
+    "Image sequence models": "models.html",
+    "Baseline": "train_baseline.html",
+    "ConvLSTM ": "train_convlstm.html",
+    "ConvLSTM on split0": "train_convlstm_split0.html",
+    "Transformer ": "train_transformer.html"
   }
 }
