@@ -130,7 +130,7 @@ nb_path: "nbs/01_models.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Encoder" class="doc_header"><code>class</code> <code>Encoder</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L11" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Encoder</code>(<strong><code>arch</code></strong>=<em><code>resnet34</code></em>, <strong><code>n_in</code></strong>=<em><code>3</code></em>, <strong><code>weights_file</code></strong>=<em><code>None</code></em>, <strong><code>head</code></strong>=<em><code>True</code></em>, <strong><code>pretrained</code></strong>=<em><code>True</code></em>, <strong><code>cut</code></strong>=<em><code>None</code></em>, <strong><code>init</code></strong>=<em><code>kaiming_normal_</code></em>, <strong><code>custom_head</code></strong>=<em><code>None</code></em>, <strong><code>concat_pool</code></strong>=<em><code>True</code></em>, <strong><code>lin_ftrs</code></strong>=<em><code>None</code></em>, <strong><code>ps</code></strong>=<em><code>0.5</code></em>, <strong><code>first_bn</code></strong>=<em><code>True</code></em>, <strong><code>bn_final</code></strong>=<em><code>False</code></em>, <strong><code>lin_first</code></strong>=<em><code>False</code></em>, <strong><code>y_range</code></strong>=<em><code>None</code></em>) :: <code>Module</code></p>
+<h2 id="Encoder" class="doc_header"><code>class</code> <code>Encoder</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L10" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Encoder</code>(<strong><code>arch</code></strong>=<em><code>resnet34</code></em>, <strong><code>n_in</code></strong>=<em><code>3</code></em>, <strong><code>weights_file</code></strong>=<em><code>None</code></em>, <strong><code>head</code></strong>=<em><code>True</code></em>, <strong><code>pretrained</code></strong>=<em><code>True</code></em>, <strong><code>cut</code></strong>=<em><code>None</code></em>, <strong><code>init</code></strong>=<em><code>kaiming_normal_</code></em>, <strong><code>custom_head</code></strong>=<em><code>None</code></em>, <strong><code>concat_pool</code></strong>=<em><code>True</code></em>, <strong><code>lin_ftrs</code></strong>=<em><code>None</code></em>, <strong><code>ps</code></strong>=<em><code>0.5</code></em>, <strong><code>first_bn</code></strong>=<em><code>True</code></em>, <strong><code>bn_final</code></strong>=<em><code>False</code></em>, <strong><code>lin_first</code></strong>=<em><code>False</code></em>, <strong><code>y_range</code></strong>=<em><code>None</code></em>) :: <code>Module</code></p>
 </blockquote>
 <p>Same as <code>nn.Module</code>, but no need for subclasses to call <code>super().__init__</code></p>
 
@@ -299,7 +299,7 @@ nb_path: "nbs/01_models.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="SimpleModel" class="doc_header"><code>class</code> <code>SimpleModel</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L24" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>SimpleModel</code>(<strong><code>arch</code></strong>=<em><code>resnet34</code></em>, <strong><code>weights_file</code></strong>=<em><code>None</code></em>, <strong><code>num_classes</code></strong>=<em><code>30</code></em>, <strong><code>seq_len</code></strong>=<em><code>40</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
+<h2 id="SimpleModel" class="doc_header"><code>class</code> <code>SimpleModel</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L23" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>SimpleModel</code>(<strong><code>arch</code></strong>=<em><code>resnet34</code></em>, <strong><code>weights_file</code></strong>=<em><code>None</code></em>, <strong><code>num_classes</code></strong>=<em><code>30</code></em>, <strong><code>seq_len</code></strong>=<em><code>40</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
 </blockquote>
 <p>A simple CNN model</p>
 
@@ -338,7 +338,7 @@ nb_path: "nbs/01_models.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="simple_splitter" class="doc_header"><code>simple_splitter</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L52" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>simple_splitter</code>(<strong><code>model</code></strong>)</p>
+<h4 id="simple_splitter" class="doc_header"><code>simple_splitter</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L51" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>simple_splitter</code>(<strong><code>model</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -444,7 +444,7 @@ nb_path: "nbs/01_models.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="LSTM" class="doc_header"><code>class</code> <code>LSTM</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L56" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>LSTM</code>(<strong><code>input_dim</code></strong>, <strong><code>n_hidden</code></strong>, <strong><code>n_layers</code></strong>, <strong><code>bidirectional</code></strong>=<em><code>False</code></em>, <strong><code>p</code></strong>=<em><code>0.5</code></em>) :: <code>Module</code></p>
+<h2 id="LSTM" class="doc_header"><code>class</code> <code>LSTM</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L55" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>LSTM</code>(<strong><code>input_dim</code></strong>, <strong><code>n_hidden</code></strong>, <strong><code>n_layers</code></strong>, <strong><code>bidirectional</code></strong>=<em><code>False</code></em>, <strong><code>p</code></strong>=<em><code>0.5</code></em>) :: <code>Module</code></p>
 </blockquote>
 <p>Same as <code>nn.Module</code>, but no need for subclasses to call <code>super().__init__</code></p>
 
@@ -653,7 +653,7 @@ nb_path: "nbs/01_models.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ConvLSTM" class="doc_header"><code>class</code> <code>ConvLSTM</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L75" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ConvLSTM</code>(<strong><code>arch</code></strong>=<em><code>resnet34</code></em>, <strong><code>weights_file</code></strong>=<em><code>None</code></em>, <strong><code>num_classes</code></strong>=<em><code>30</code></em>, <strong><code>lstm_layers</code></strong>=<em><code>1</code></em>, <strong><code>hidden_dim</code></strong>=<em><code>1024</code></em>, <strong><code>bidirectional</code></strong>=<em><code>True</code></em>, <strong><code>attention</code></strong>=<em><code>True</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
+<h2 id="ConvLSTM" class="doc_header"><code>class</code> <code>ConvLSTM</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L74" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ConvLSTM</code>(<strong><code>arch</code></strong>=<em><code>resnet34</code></em>, <strong><code>weights_file</code></strong>=<em><code>None</code></em>, <strong><code>num_classes</code></strong>=<em><code>30</code></em>, <strong><code>lstm_layers</code></strong>=<em><code>1</code></em>, <strong><code>hidden_dim</code></strong>=<em><code>1024</code></em>, <strong><code>bidirectional</code></strong>=<em><code>True</code></em>, <strong><code>attention</code></strong>=<em><code>True</code></em>, <strong><code>debug</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
 </blockquote>
 <p>Same as <code>nn.Module</code>, but no need for subclasses to call <code>super().__init__</code></p>
 
@@ -685,7 +685,7 @@ nb_path: "nbs/01_models.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="convlstm_splitter" class="doc_header"><code>convlstm_splitter</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L116" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>convlstm_splitter</code>(<strong><code>model</code></strong>)</p>
+<h4 id="convlstm_splitter" class="doc_header"><code>convlstm_splitter</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L115" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>convlstm_splitter</code>(<strong><code>model</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -844,52 +844,14 @@ nb_path: "nbs/01_models.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-</div>
-    {% endraw %}
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
 
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="PreNorm" class="doc_header"><code>class</code> <code>PreNorm</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L124" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>PreNorm</code>(<strong><code>dim</code></strong>, <strong><code>fn</code></strong>) :: <code>Module</code></p>
-</blockquote>
-<p>Base class for all neural network modules.</p>
-<p>Your models should also subclass this class.</p>
-<p>Modules can also contain other Modules, allowing to nest them in
-a tree structure. You can assign the submodules as regular attributes::</p>
-
-<pre><code>import torch.nn as nn
-import torch.nn.functional as F
-
-class Model(nn.Module):
-    def __init__(self):
-        super(Model, self).__init__()
-        self.conv1 = nn.Conv2d(1, 20, 5)
-        self.conv2 = nn.Conv2d(20, 20, 5)
-
-    def forward(self, x):
-        x = F.relu(self.conv1(x))
-        return F.relu(self.conv2(x))
-
-</code></pre>
-<p>Submodules assigned in this way will be registered, and will have their
-parameters converted too when you call :meth:<code>to</code>, etc.</p>
-<p>:ivar training: Boolean represents whether this module is in training or
-                evaluation mode.
-:vartype training: bool</p>
-
-</div>
-
-</div>
-
+    </div>
 </div>
 </div>
 
@@ -914,148 +876,7 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="FeedForward" class="doc_header"><code>class</code> <code>FeedForward</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L135" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>FeedForward</code>(<strong><code>dim</code></strong>, <strong><code>mult</code></strong>=<em><code>4</code></em>, <strong><code>dropout</code></strong>=<em><code>0.0</code></em>) :: <code>Module</code></p>
-</blockquote>
-<p>Base class for all neural network modules.</p>
-<p>Your models should also subclass this class.</p>
-<p>Modules can also contain other Modules, allowing to nest them in
-a tree structure. You can assign the submodules as regular attributes::</p>
-
-<pre><code>import torch.nn as nn
-import torch.nn.functional as F
-
-class Model(nn.Module):
-    def __init__(self):
-        super(Model, self).__init__()
-        self.conv1 = nn.Conv2d(1, 20, 5)
-        self.conv2 = nn.Conv2d(20, 20, 5)
-
-    def forward(self, x):
-        x = F.relu(self.conv1(x))
-        return F.relu(self.conv2(x))
-
-</code></pre>
-<p>Submodules assigned in this way will be registered, and will have their
-parameters converted too when you call :meth:<code>to</code>, etc.</p>
-<p>:ivar training: Boolean represents whether this module is in training or
-                evaluation mode.
-:vartype training: bool</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="attn" class="doc_header"><code>attn</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L149" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>attn</code>(<strong><code>q</code></strong>, <strong><code>k</code></strong>, <strong><code>v</code></strong>)</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="Attention" class="doc_header"><code>class</code> <code>Attention</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L156" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Attention</code>(<strong><code>dim</code></strong>, <strong><code>dim_head</code></strong>=<em><code>64</code></em>, <strong><code>heads</code></strong>=<em><code>8</code></em>, <strong><code>dropout</code></strong>=<em><code>0.0</code></em>) :: <code>Module</code></p>
-</blockquote>
-<p>Base class for all neural network modules.</p>
-<p>Your models should also subclass this class.</p>
-<p>Modules can also contain other Modules, allowing to nest them in
-a tree structure. You can assign the submodules as regular attributes::</p>
-
-<pre><code>import torch.nn as nn
-import torch.nn.functional as F
-
-class Model(nn.Module):
-    def __init__(self):
-        super(Model, self).__init__()
-        self.conv1 = nn.Conv2d(1, 20, 5)
-        self.conv2 = nn.Conv2d(20, 20, 5)
-
-    def forward(self, x):
-        x = F.relu(self.conv1(x))
-        return F.relu(self.conv2(x))
-
-</code></pre>
-<p>Submodules assigned in this way will be registered, and will have their
-parameters converted too when you call :meth:<code>to</code>, etc.</p>
-<p>:ivar training: Boolean represents whether this module is in training or
-                evaluation mode.
-:vartype training: bool</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="TimeSformer" class="doc_header"><code>class</code> <code>TimeSformer</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L214" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TimeSformer</code>(<strong><code>dim</code></strong>, <strong><code>num_frames</code></strong>, <strong><code>num_classes</code></strong>, <strong><code>image_size</code></strong>=<em><code>224</code></em>, <strong><code>patch_size</code></strong>=<em><code>16</code></em>, <strong><code>channels</code></strong>=<em><code>3</code></em>, <strong><code>depth</code></strong>=<em><code>12</code></em>, <strong><code>heads</code></strong>=<em><code>8</code></em>, <strong><code>dim_head</code></strong>=<em><code>64</code></em>, <strong><code>attn_dropout</code></strong>=<em><code>0.0</code></em>, <strong><code>ff_dropout</code></strong>=<em><code>0.0</code></em>) :: <code>Module</code></p>
+<h2 id="TimeSformer" class="doc_header"><code>class</code> <code>TimeSformer</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L122" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TimeSformer</code>(<strong><code>dim</code></strong>, <strong><code>num_frames</code></strong>, <strong><code>num_classes</code></strong>, <strong><code>image_size</code></strong>=<em><code>224</code></em>, <strong><code>patch_size</code></strong>=<em><code>16</code></em>, <strong><code>channels</code></strong>=<em><code>3</code></em>, <strong><code>depth</code></strong>=<em><code>12</code></em>, <strong><code>heads</code></strong>=<em><code>8</code></em>, <strong><code>dim_head</code></strong>=<em><code>64</code></em>, <strong><code>attn_dropout</code></strong>=<em><code>0.0</code></em>, <strong><code>ff_dropout</code></strong>=<em><code>0.0</code></em>) :: <a href="/action_recognition/models.html#TimeSformer"><code>TimeSformer</code></a></p>
 </blockquote>
 <p>Base class for all neural network modules.</p>
 <p>Your models should also subclass this class.</p>
@@ -1117,6 +938,143 @@ parameters converted too when you call :meth:<code>to</code>, etc.</p>
     <span class="n">dim_head</span> <span class="o">=</span>  <span class="mi">64</span><span class="p">,</span>
     <span class="n">attn_dropout</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
     <span class="n">ff_dropout</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">video</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span> <span class="c1"># (batch x frames x channels x height x width)</span>
+<span class="n">test_eq</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">video</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="STAM---Pytorch">STAM - Pytorch<a class="anchor-link" href="#STAM---Pytorch"> </a></h2><p>Implementation of <a href="https://arxiv.org/abs/2103.13915">STAM (Space Time Attention Model)</a>, yet another pure and simple SOTA attention model that bests all previous models in video classification. This corroborates the finding of <a href="https://github.com/lucidrains/TimeSformer-pytorch">TimeSformer</a>. Attention is all we need.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="STAM" class="doc_header"><code>class</code> <code>STAM</code><a href="https://github.com/tcapelle/action_recognition/tree/master/action_recognition/models.py#L131" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>STAM</code>(<strong><code>dim</code></strong>, <strong><code>image_size</code></strong>, <strong><code>patch_size</code></strong>, <strong><code>num_frames</code></strong>, <strong><code>num_classes</code></strong>, <strong><code>space_depth</code></strong>, <strong><code>space_heads</code></strong>, <strong><code>space_mlp_dim</code></strong>, <strong><code>time_depth</code></strong>, <strong><code>time_heads</code></strong>, <strong><code>time_mlp_dim</code></strong>, <strong><code>space_dim_head</code></strong>=<em><code>64</code></em>, <strong><code>time_dim_head</code></strong>=<em><code>64</code></em>, <strong><code>dropout</code></strong>=<em><code>0.0</code></em>, <strong><code>emb_dropout</code></strong>=<em><code>0.0</code></em>) :: <a href="/action_recognition/models.html#STAM"><code>STAM</code></a></p>
+</blockquote>
+<p>Base class for all neural network modules.</p>
+<p>Your models should also subclass this class.</p>
+<p>Modules can also contain other Modules, allowing to nest them in
+a tree structure. You can assign the submodules as regular attributes::</p>
+
+<pre><code>import torch.nn as nn
+import torch.nn.functional as F
+
+class Model(nn.Module):
+    def __init__(self):
+        super(Model, self).__init__()
+        self.conv1 = nn.Conv2d(1, 20, 5)
+        self.conv2 = nn.Conv2d(20, 20, 5)
+
+    def forward(self, x):
+        x = F.relu(self.conv1(x))
+        return F.relu(self.conv2(x))
+
+</code></pre>
+<p>Submodules assigned in this way will be registered, and will have their
+parameters converted too when you call :meth:<code>to</code>, etc.</p>
+<p>:ivar training: Boolean represents whether this module is in training or
+                evaluation mode.
+:vartype training: bool</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">STAM</span><span class="p">(</span>
+    <span class="n">dim</span> <span class="o">=</span> <span class="mi">128</span><span class="p">,</span>
+    <span class="n">image_size</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>     <span class="c1"># size of image</span>
+    <span class="n">patch_size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>      <span class="c1"># patch size</span>
+    <span class="n">num_frames</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>       <span class="c1"># number of image frames, selected out of video</span>
+    <span class="n">space_depth</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>     <span class="c1"># depth of vision transformer</span>
+    <span class="n">space_heads</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>      <span class="c1"># heads of vision transformer</span>
+    <span class="n">space_mlp_dim</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">,</span> <span class="c1"># feedforward hidden dimension of vision transformer</span>
+    <span class="n">time_depth</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>       <span class="c1"># depth of time transformer (in paper, it was shallower, 6)</span>
+    <span class="n">time_heads</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>       <span class="c1"># heads of time transformer</span>
+    <span class="n">time_mlp_dim</span> <span class="o">=</span> <span class="mi">2048</span><span class="p">,</span>  <span class="c1"># feedforward hidden dimension of time transformer</span>
+    <span class="n">num_classes</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>    <span class="c1"># number of output classes</span>
+    <span class="n">space_dim_head</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>  <span class="c1"># space transformer head dimension</span>
+    <span class="n">time_dim_head</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>   <span class="c1"># time transformer head dimension</span>
+    <span class="n">dropout</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span>         <span class="c1"># dropout</span>
+    <span class="n">emb_dropout</span> <span class="o">=</span> <span class="mf">0.</span>      <span class="c1"># embedding dropout</span>
 <span class="p">)</span>
 </pre></div>
 

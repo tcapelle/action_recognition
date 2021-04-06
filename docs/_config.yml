@@ -3,7 +3,7 @@ output: web
 topnav_title: action_recognition
 site_title: action_recognition
 company_name: Thomas Capelle
-description: Solving UCR 101 with fastai 2
+description: Solving UCR 101 with fastai
 # Set to false to disable KaTeX math
 use_math: true
 # Add Google analytics id if you have one and want to use it here
@@ -58,7 +58,9 @@ defaults:
 
 sidebars:
 - home_sidebar
-permalink: pretty
 
-theme: jekyll-theme-cayman
+plugins:
+    - jekyll-remote-theme
+    
+remote_theme: fastai/nbdev-jekyll-theme
 baseurl: /action_recognition/

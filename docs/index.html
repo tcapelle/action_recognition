@@ -31,7 +31,8 @@ nb_path: "nbs/index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This repo implementation is using <code>fastai</code> library (version 2). It is based on the implementations found on <a href="https://github.com/eriklindernoren/Action-Recognition">Action Recognition</a>.</p>
+<p>It is based on the implementations found on <a href="https://github.com/eriklindernoren/Action-Recognition">Action Recognition</a>.</p>
+<p>I try to keep with updated architectures that come out. Right now transformers are all we need... Follow @lucidrains to get the next attention based model ASAP.</p>
 
 </div>
 </div>
@@ -44,23 +45,8 @@ nb_path: "nbs/index.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>First install <code>fastai</code>: (version 2, it has been released)</p>
+<p>First install <code>fastai</code>:</p>
 <div class="highlight"><pre><span></span>$ pip install fastcore fastai
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>then clone the repo, and inside the repo's folder do:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span>$ pip install -e .
 </pre></div>
 
 </div>
@@ -70,9 +56,9 @@ nb_path: "nbs/index.ipynb"
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Results">Results<a class="anchor-link" href="#Results"> </a></h2><p>Results are computed on a random splut 80%/20%. Using <code>fastai2</code> built-in <code>fit_one_cycle</code> training.</p>
 <ul>
-<li><a href="nbs/04_train_baseline.ipynb">train baseline</a>: Implements a Basic Resnet 34 encoder coupled with a simple attention layer over the frames. (91% accuracy)</li>
-<li><a href="nbs/04_train_convlstm.ipynb">train convlstm</a>: resnet34 encoder + LSTM layer over image features. (84.8% accuracy)</li>
-<li><a href="nbs/05_train_transformer.ipynb">train_transformer</a>: Added the new TimeSformer <del>Transformer based model, inspired from DETR. This is in early stages, only supporting batch size equal to 1.</del></li>
+<li><a href="01_train_baseline.ipynb">train baseline</a>: Implements a Basic Resnet 34 encoder coupled with a simple attention layer over the frames. (91% accuracy)</li>
+<li><a href="02_train_convlstm.ipynb">train convlstm</a>: resnet34 encoder + LSTM layer over image features. (84.8% accuracy)</li>
+<li><a href="03_train_transformer.ipynb">train_transformer</a>: Added the new TimeSformer and STAM from @lucidrains implementations.</li>
 </ul>
 
 </div>

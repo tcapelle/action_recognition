@@ -1,8 +1,8 @@
 topnav:
 - title: Topnav
   items:
-    - title: GitHub
-      external_url: https://github.com/tcapelle/action_recognition
+    - title: github
+      external_url: https://github.com/tcapelle/action_recognition/tree/master/
 
 #Topnav dropdowns
 topnav_dropdowns:
