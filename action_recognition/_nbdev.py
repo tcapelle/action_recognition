@@ -2,7 +2,8 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"unrar": "00_core.ipynb",
+index = {"Learner.one_batch": "00_core.ipynb",
+         "unrar": "00_core.ipynb",
          "extract_frames": "00_core.ipynb",
          "avi2frames": "00_core.ipynb",
          "get_instances": "00_core.ipynb",
@@ -16,11 +17,8 @@ index = {"unrar": "00_core.ipynb",
          "LSTM": "01_models.ipynb",
          "ConvLSTM": "01_models.ipynb",
          "convlstm_splitter": "01_models.ipynb",
-         "PreNorm": "01_models.ipynb",
-         "FeedForward": "01_models.ipynb",
-         "attn": "01_models.ipynb",
-         "Attention": "01_models.ipynb",
-         "TimeSformer": "01_models.ipynb"}
+         "TimeSformer": "01_models.ipynb",
+         "STAM": "01_models.ipynb"}
 
 modules = ["core.py",
            "models.py"]

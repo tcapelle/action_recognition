@@ -7,6 +7,14 @@ __all__ = ['unrar', 'extract_frames', 'avi2frames', 'get_instances', 'ImageTuple
 from fastai.vision.all import *
 
 # Cell
+@patch
+def one_batch(self: Learner, i, b):
+    self.iter = i
+    b_on_device = to_device(b, device=self.dls.device) if self.dls.device is not None else b
+    self._split(b_on_device)
+    self._with_events(self._do_one_batch, 'batch', CancelBatchException)
+
+# Cell
 from rarfile import RarFile
 
 def unrar(fname, dest):
